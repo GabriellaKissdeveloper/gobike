@@ -1,0 +1,30 @@
+{
+  "name": "gobike-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Helsinki Bike app",
+  "main": "app.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db-start": "npx ts-node database/index.ts",
+    "start": "nodemon app.ts"
+  },
+  "keywords": [],
+  "author": "Gabriella Kiss",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongoose": "^5.11.97",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.3.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/node": "^18.15.11",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}

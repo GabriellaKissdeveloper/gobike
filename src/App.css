@@ -33,3 +33,38 @@ footer,
   text-align: center;
   padding: 5px;
 }
+
+/* Table */
+thead {
+  background-color: #ffc107;
+}
+
+th {
+  color: green !important;
+}
+
+/* Pagination */
+.pagination > li {
+  list-style: none;
+}
+
+.pagination > li > a,
+.pagination > li:first-child > a,
+.pagination > li:last-child > a {
+  color: green;
+  background-color: white;
+  box-shadow: none;
+}
+
+.pagination > li.active > a {
+  color: green;
+  background-color: #ffc107;
+  border-color: green;
+  box-shadow: none;
+}
+
+.pagination > li > a:hover {
+  color: green !important;
+  background-color: #ffc107 !important;
+  box-shadow: none;
+}

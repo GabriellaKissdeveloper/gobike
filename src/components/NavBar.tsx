@@ -19,7 +19,7 @@ export default function NavBar() {
             <Nav.Link className="link-success" href="#features">
               List Journeys
             </Nav.Link>
-            <Nav.Link className="link-success" href="#pricing">
+            <Nav.Link className="link-success" href="/stations">
               List Stations
             </Nav.Link>
           </Nav>
