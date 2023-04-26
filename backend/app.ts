@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import stationRouter from './routes/station';
+import journeyRouter from './routes/journey';
 
 dotenv.config();
 const uri: string = String(process.env.MONGO_URI);
@@ -21,3 +22,4 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/stations', stationRouter);
+app.use('/journeys', journeyRouter);

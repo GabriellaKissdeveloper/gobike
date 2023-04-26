@@ -16,7 +16,7 @@ export default function NavBar() {
           className="justify-content-end"
         >
           <Nav className="link-attr">
-            <Nav.Link className="link-success" href="#features">
+            <Nav.Link className="link-success" href="/journeys">
               List Journeys
             </Nav.Link>
             <Nav.Link className="link-success" href="/stations">

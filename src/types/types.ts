@@ -7,3 +7,11 @@ export interface Station {
   x: number;
   y: number;
 }
+
+export interface Journey {
+  Departure: Date;
+  DepartureStationName: string;
+  ReturnStationName: string;
+  CoveredDistance: number;
+  Duration: number;
+}
