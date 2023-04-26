@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db-start": "npx ts-node database/index.ts",
+    "db-start": "npx ts-node database/readJourneys.ts",
     "start": "nodemon app.ts"
   },
   "keywords": [],
@@ -15,7 +15,7 @@
   "dependencies": {
     "@types/mongoose": "^5.11.97",
     "cors": "^2.8.5",
-    "csv-parse": "^5.3.6",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.3"
