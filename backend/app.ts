@@ -22,4 +22,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/stations', stationRouter);
+app.use('/stations/search', stationRouter);
 app.use('/journeys', journeyRouter);
+app.use('/journeys/search', journeyRouter);

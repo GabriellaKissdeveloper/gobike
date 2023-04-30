@@ -26,12 +26,14 @@ body {
   margin-top: 30px;
 }
 
-footer,
-.push {
-  margin-top: 50px;
+footer {
   background-color: #ffc107;
   text-align: center;
   padding: 5px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 /* Table */
@@ -41,6 +43,8 @@ thead {
 
 th {
   color: green !important;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 /* Pagination */
@@ -67,4 +71,10 @@ th {
   color: green !important;
   background-color: #ffc107 !important;
   box-shadow: none;
+}
+
+/* search field */
+form .form-control:focus {
+  border-color: #ffc107;
+  box-shadow: none !important;
 }

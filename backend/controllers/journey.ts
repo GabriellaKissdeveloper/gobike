@@ -9,16 +9,8 @@ export const getAllJourneys = async (
   const total = await Journey.count();
   const journeys = await Journey.find({})
     .skip(parseInt(pageNo as string) * parseInt(limit as string))
-    .limit(parseInt(limit as string));
+    .limit(parseInt(limit as string))
+    .select('DepartureStationName ReturnStationName CoveredDistance Duration');
 
-  const results = journeys.map((journey) => {
-    return {
-      DepartureStationName: journey.DepartureStationName,
-      ReturnStationName: journey.ReturnStationName,
-      CoveredDistance: journey.CoveredDistance,
-      Duration: journey.Duration,
-    };
-  });
-
-  res.json({ journeys: results, total: total });
+  res.json({ journeys, total });
 };

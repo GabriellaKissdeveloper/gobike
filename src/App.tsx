@@ -22,7 +22,7 @@ function App() {
             <Journeys pageNo={0} limit={20} />
           </Route>
           <Route exact path="/stations">
-            <Stations />
+            <Stations pageNo={0} limit={20} />
           </Route>
         </Switch>
         <Footer />

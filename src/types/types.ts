@@ -1,9 +1,9 @@
 export interface Station {
-  id: number;
-  name: string;
-  address: string;
-  city: string;
-  capacity: number;
+  ID: number;
+  Nimi: string;
+  Osoite: string;
+  Kaupunki: string;
+  Kapasiteet: number;
   x: number;
   y: number;
 }
