@@ -1,5 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -7,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import { Station } from '../types/types';
+import SingleStation from './SingleStation';
 
 export default function Stations(props: any) {
   const [stations, setStations] = useState<Station[]>([]);
@@ -125,7 +128,10 @@ export default function Stations(props: any) {
               ? searchStations.map((station, i) => {
                   return (
                     <tr key={i}>
-                      <td>{station.ID}</td>
+                      <Link to={`/stations/station/${station.ID}`}>
+                        <td>{station.ID}</td>
+                      </Link>
+
                       <td>{station.Nimi}</td>
                       <td>
                         {station.Kaupunki !== ' '
@@ -140,7 +146,13 @@ export default function Stations(props: any) {
               : stations.map((station, i) => {
                   return (
                     <tr key={i}>
-                      <td>{station.ID}</td>
+                      <Link to={`/stations/station/${station.ID}`}>
+                        <td>
+                          <span className="pt-2 align-middle">
+                            {station.ID}
+                          </span>
+                        </td>
+                      </Link>
                       <td>{station.Nimi}</td>
                       <td>
                         {station.Kaupunki !== ' '

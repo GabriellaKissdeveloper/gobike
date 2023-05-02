@@ -47,6 +47,15 @@ th {
   font-weight: normal;
 }
 
+td:first-child {
+  color: green !important;
+  align-self: center;
+}
+
+.td-link {
+  color: black !important;
+}
+
 /* Pagination */
 .pagination > li {
   list-style: none;
@@ -77,4 +86,13 @@ th {
 form .form-control:focus {
   border-color: #ffc107;
   box-shadow: none !important;
+}
+
+.numberID {
+  color: green !important;
+  vertical-align: center;
+}
+
+.map {
+  height: 300px;
 }

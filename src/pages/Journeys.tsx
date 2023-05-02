@@ -123,7 +123,11 @@ export default function Journeys(props: any) {
             {journeys.map((journey, i) => {
               return (
                 <tr key={i}>
-                  <td>{journey.DepartureStationName}</td>
+                  <td>
+                    <span style={{ color: 'black' }}>
+                      {journey.DepartureStationName}
+                    </span>
+                  </td>
                   <td>{journey.ReturnStationName}</td>
                   <td>{journey.CoveredDistance / 1000}</td>
                   <td>{(journey.Duration / 60).toFixed(2)}</td>
