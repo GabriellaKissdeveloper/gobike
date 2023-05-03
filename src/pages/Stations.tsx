@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import { Station } from '../types/types';
-import SingleStation from './SingleStation';
 
 export default function Stations(props: any) {
   const [stations, setStations] = useState<Station[]>([]);

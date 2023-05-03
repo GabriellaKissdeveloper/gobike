@@ -15,3 +15,8 @@ export interface Journey {
   CoveredDistance: number;
   Duration: number;
 }
+
+export interface TopStations {
+  _id: string;
+  count: number;
+}
