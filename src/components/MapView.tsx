@@ -40,8 +40,8 @@ function generateNewMarker({
   lng,
   map,
 }: {
-  lng: number;
   lat: number;
+  lng: number;
   map: Map;
 }) {
   new Marker({ color: 'green', scale: 1 }).setLngLat([lng, lat]).addTo(map);

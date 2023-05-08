@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { Station, TopStations } from '../types/types';
-import { Loading } from './Loading';
+import Loading from '../components/Loading';
 import MapView from '../components/MapView';
 
 export default function SingleStation() {

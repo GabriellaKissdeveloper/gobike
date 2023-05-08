@@ -96,3 +96,8 @@ form .form-control:focus {
 .map {
   height: 300px;
 }
+
+.hidden {
+  visibility: hidden;
+  cursor: none;
+}

@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 
-export function Loading() {
+export default function Loading() {
   return (
     <Container>
       <p className="text-center mt-5">

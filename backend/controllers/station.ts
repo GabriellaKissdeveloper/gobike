@@ -55,3 +55,30 @@ export const getSingleStation = async (
     averageReturnDistance,
   });
 };
+
+export const createNewStation = async (
+  req: express.Request,
+  res: express.Response,
+) => {
+  const id = req.body.ID;
+  const station = await Station.findOne({ ID: id });
+  if (station) {
+    return res.json({
+      message: 'This ID already exist. ID must be unique.',
+      id,
+      status: 409,
+    });
+  } else {
+    try {
+      const newStation = new Station(req.body);
+      await newStation.save();
+      return res.json({
+        message: 'New station has been created successfully.',
+        newStation,
+        status: 200,
+      });
+    } catch (err) {
+      return res.json({ message: err, status: 500 });
+    }
+  }
+};

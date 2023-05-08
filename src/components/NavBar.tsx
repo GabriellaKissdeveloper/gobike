@@ -22,6 +22,9 @@ export default function NavBar() {
             <Nav.Link className="link-success" href="/stations">
               List Stations
             </Nav.Link>
+            <Nav.Link className="link-success" href="/new">
+              New Station/Journey
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

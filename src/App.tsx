@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Stations from './pages/Stations';
 import Journeys from './pages/Journeys';
 import SingleStation from './pages/SingleStation';
+import AddNew from './pages/AddNew';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/stations/station/:id">
             <SingleStation />
+          </Route>
+          <Route exact path="/new">
+            <AddNew />
           </Route>
         </Switch>
         <Footer />
