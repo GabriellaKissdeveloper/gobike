@@ -20,18 +20,14 @@ export const createNewJourney = async (
   req: express.Request,
   res: express.Response,
 ) => {
-  const coveredDistance = req.body.CoveredDistance;
-  const duration = req.body.Duration;
-  // const depId = req.body.DepartureStationId
-  // const retId = req.body.ReturnStationId
   const depStation = await Station.findOne({ ID: req.body.DepartureStationId });
   const retStation = await Station.findOne({ ID: req.body.ReturnStationId });
-  if (duration < 10) {
+  if (req.body.Duration < 10) {
     return res.json({
       message: 'Duration must be greater than 10 seconds.',
       status: 409,
     });
-  } else if (coveredDistance < 10) {
+  } else if (req.body.CoveredDistance < 10) {
     return res.json({
       message: 'Covered distance must be greater than 10 meters.',
       status: 409,

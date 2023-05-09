@@ -1,5 +1,5 @@
 import ReactPaginate from 'react-paginate';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
@@ -18,13 +18,20 @@ export default function Stations(props: any) {
   const [total, setTotal] = useState(0);
   const [pageNo, setPageNo] = useState(0);
 
+  const [sortKey, setSortKey] = useState('ID');
+  const [sortOrder, setSortOrder] = useState('asc');
+
   useEffect(() => {
-    fetchStations();
-  }, [pageNo]);
+    if (sortKey !== 'ID' || sortOrder !== 'asc') {
+      handleSort(sortKey, sortOrder);
+    } else {
+      fetchStations();
+    }
+  }, [pageNo, sortKey, sortOrder]);
 
   const fetchStations = async () => {
     const response = await fetch(
-      `http://localhost:8000/stations?pageNo=${pageNo}&limit=${props.limit}`,
+      `http://localhost:8000/stations?field=${sortKey}&order=${sortOrder}&pageNo=${pageNo}&limit=${props.limit}`,
     );
     const data = await response.json();
     setStations(data.stations);
@@ -42,7 +49,7 @@ export default function Stations(props: any) {
   const handleSearch = () => {
     const fetchSearchStations = async (search: string) => {
       const response = await fetch(
-        `http://localhost:8000/stations/search?string=${search}`,
+        `http://localhost:8000/stations/search?string=${search}&field=${sortKey}&order=${sortOrder}`,
       );
       const result = await response.json();
       setSearchStations(result.searchStations);
@@ -55,6 +62,16 @@ export default function Stations(props: any) {
     fetchStations();
     setSearchStations([]);
     setSearch('');
+  };
+
+  const handleSort = (key: string, order: string) => {
+    setSortKey(key);
+    setSortOrder(order);
+    if (search) {
+      handleSearch();
+    } else {
+      fetchStations();
+    }
   };
 
   return (
@@ -115,11 +132,91 @@ export default function Stations(props: any) {
         <Table bordered>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Station Name</th>
-              <th>City</th>
-              <th>Address</th>
-              <th>Capacity</th>
+              <th>
+                <div className="d-flex align-items-center">
+                  <div className="flex-grow-1">ID</div>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('ID', 'asc')}
+                  >
+                    ↓
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('ID', 'desc')}
+                  >
+                    ↑
+                  </Button>
+                </div>
+              </th>
+              <th>
+                <div className="d-flex align-items-center">
+                  <div className="flex-grow-1">Station Name</div>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Nimi', 'asc')}
+                  >
+                    ↓
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Nimi', 'desc')}
+                  >
+                    ↑
+                  </Button>
+                </div>
+              </th>
+              <th>
+                <div className="d-flex align-items-center">
+                  <div className="flex-grow-1">City</div>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Kaupunki', 'asc')}
+                  >
+                    ↓
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Kaupunki', 'desc')}
+                  >
+                    ↑
+                  </Button>
+                </div>
+              </th>
+              <th>
+                <div className="d-flex align-items-center">
+                  <div className="flex-grow-1">Address</div>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Osoite', 'asc')}
+                  >
+                    ↓
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Osoite', 'desc')}
+                  >
+                    ↑
+                  </Button>
+                </div>
+              </th>
+              <th>
+                <div className="d-flex align-items-center">
+                  <div className="flex-grow-1">Capacity</div>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Kapasiteet', 'asc')}
+                  >
+                    ↓
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleSort('Kapasiteet', 'desc')}
+                  >
+                    ↑
+                  </Button>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>

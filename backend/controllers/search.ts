@@ -10,10 +10,13 @@ export const searchStations = async (
   let searchString = {
     $or: [{ Nimi: string }, { Osoite: string }, { Kaupunki: string }],
   };
-
-  const searchStations = await Station.find(searchString).select(
-    'ID Nimi Osoite Kaupunki Kapasiteet x y',
-  );
+  const { field, order } = req.query;
+  let sortObj: { [key: string]: any } = {};
+  let key = field as string;
+  sortObj[key] = order === 'asc' ? 1 : -1;
+  const searchStations = await Station.find(searchString)
+    .sort(sortObj)
+    .select('ID Nimi Osoite Kaupunki Kapasiteet x y');
 
   res.json({ searchStations });
 };

@@ -1,5 +1,4 @@
 import Container from 'react-bootstrap/Container';
-import MapView from '../components/MapView';
 
 export default function Home() {
   return (

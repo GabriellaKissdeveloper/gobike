@@ -129,8 +129,12 @@ export default function Journeys(props: any) {
                     </span>
                   </td>
                   <td>{journey.ReturnStationName}</td>
-                  <td>{journey.CoveredDistance / 1000}</td>
-                  <td>{(journey.Duration / 60).toFixed(2)}</td>
+                  <td className="text-center">
+                    {(journey.CoveredDistance / 1000).toFixed(2)}
+                  </td>
+                  <td className="text-center">
+                    {(journey.Duration / 60).toFixed(2)}
+                  </td>
                 </tr>
               );
             })}

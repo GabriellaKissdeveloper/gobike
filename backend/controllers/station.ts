@@ -6,13 +6,16 @@ export const getAllStations = async (
   req: express.Request,
   res: express.Response,
 ) => {
-  const { pageNo = 0, limit = 20 } = req.query;
+  const { pageNo = 0, limit = 20, field, order } = req.query;
+  let sortObj: { [key: string]: any } = {};
+  let key = field as string;
+  sortObj[key] = order === 'asc' ? 1 : -1;
   const total = await Station.count();
   const stations = await Station.find({})
+    .sort(sortObj)
     .skip(parseInt(pageNo as string) * parseInt(limit as string))
     .limit(parseInt(limit as string))
     .select('ID Nimi Osoite Kaupunki Kapasiteet x y');
-
   res.json({ stations, total });
 };
 

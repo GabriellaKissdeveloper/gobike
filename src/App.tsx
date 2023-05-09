@@ -11,6 +11,7 @@ import Stations from './pages/Stations';
 import Journeys from './pages/Journeys';
 import SingleStation from './pages/SingleStation';
 import AddNew from './pages/AddNew';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/new">
             <AddNew />
+          </Route>
+          <Route exact path="/*">
+            <PageNotFound />
           </Route>
         </Switch>
         <Footer />
