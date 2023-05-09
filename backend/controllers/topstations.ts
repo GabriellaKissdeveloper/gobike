@@ -6,8 +6,22 @@ export const top5Stations = async (
   res: express.Response,
 ) => {
   const id = parseInt(req.params.id);
-  const matching_dep = { DepartureStationId: id };
-  const matching_ret = { ReturnStationId: id };
+  let start = new Date(String(req.query.startDate));
+  let end = new Date(String(req.query.endDate));
+  const matching_dep = {
+    $and: [
+      { DepartureStationId: id },
+      { Departure: { $gte: start } },
+      { Return: { $lte: end } },
+    ],
+  };
+  const matching_ret = {
+    $and: [
+      { ReturnStationId: id },
+      { Departure: { $gte: start } },
+      { Return: { $lte: end } },
+    ],
+  };
   const top5return = await Journey.aggregate([
     { $match: matching_dep },
     {

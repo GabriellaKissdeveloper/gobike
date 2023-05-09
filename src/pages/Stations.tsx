@@ -1,5 +1,5 @@
 import ReactPaginate from 'react-paginate';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
@@ -13,7 +13,7 @@ import { Station } from '../types/types';
 export default function Stations(props: any) {
   const [stations, setStations] = useState<Station[]>([]);
   const [searchStations, setSearchStations] = useState<Station[]>([]);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [_, setItemOffset] = useState(0);
   const [search, setSearch] = useState('');
   const [total, setTotal] = useState(0);
   const [pageNo, setPageNo] = useState(0);

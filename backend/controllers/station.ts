@@ -24,39 +24,72 @@ export const getSingleStation = async (
   res: express.Response,
 ) => {
   const id = parseInt(req.params.id);
-  const matching_dep = { DepartureStationId: id };
-  const matching_ret = { ReturnStationId: id };
-  const station = await Station.find({ ID: id }).select('ID Nimi Osoite x y');
-  const totalDeparture = await Journey.find({ DepartureStationId: id }).count();
-  const totalReturn = await Journey.find({ ReturnStationId: id }).count();
-  const averageDepartureDistance = await Journey.aggregate([
-    { $match: matching_dep },
-    {
-      $group: {
-        _id: '$DepartureStationId',
-        average: { $avg: '$CoveredDistance' },
-        avgtime: { $avg: '$Duration' },
-      },
-    },
-  ]);
-  const averageReturnDistance = await Journey.aggregate([
-    { $match: matching_ret },
-    {
-      $group: {
-        _id: '$ReturnStationId',
-        average: { $avg: '$CoveredDistance' },
-        avgtime: { $avg: '$Duration' },
-      },
-    },
-  ]);
+  let start = new Date(String(req.query.startDate));
+  let end = new Date(String(req.query.endDate));
 
-  res.json({
-    station,
-    totalDeparture,
-    totalReturn,
-    averageDepartureDistance,
-    averageReturnDistance,
-  });
+  if (start > end) {
+    const station = await Station.find({ ID: id }).select('ID Nimi Osoite x y');
+    return res.json({
+      station,
+      message: 'Start date cannot be greater than end date!',
+    });
+  } else {
+    const matching_dep = {
+      $and: [
+        { DepartureStationId: id },
+        { Departure: { $gte: start } },
+        { Return: { $lte: end } },
+      ],
+    };
+    const matching_ret = {
+      $and: [
+        { ReturnStationId: id },
+        { Departure: { $gte: start } },
+        { Return: { $lte: end } },
+      ],
+    };
+    const station = await Station.find({ ID: id }).select('ID Nimi Osoite x y');
+    const totalDeparture = await Journey.find({
+      DepartureStationId: id,
+      Departure: { $gte: start },
+      Return: { $lte: end },
+    }).count();
+    const totalReturn = await Journey.find({
+      ReturnStationId: id,
+      Departure: { $gte: start },
+      Return: { $lte: end },
+    }).count();
+    const averageDepartureDistance = await Journey.aggregate([
+      {
+        $match: matching_dep,
+      },
+      {
+        $group: {
+          _id: '$DepartureStationId',
+          average: { $avg: '$CoveredDistance' },
+          avgtime: { $avg: '$Duration' },
+        },
+      },
+    ]);
+    const averageReturnDistance = await Journey.aggregate([
+      { $match: matching_ret },
+      {
+        $group: {
+          _id: '$ReturnStationId',
+          average: { $avg: '$CoveredDistance' },
+          avgtime: { $avg: '$Duration' },
+        },
+      },
+    ]);
+
+    res.json({
+      station,
+      totalDeparture,
+      totalReturn,
+      averageDepartureDistance,
+      averageReturnDistance,
+    });
+  }
 };
 
 export const createNewStation = async (
