@@ -101,3 +101,22 @@ form .form-control:focus {
   visibility: hidden;
   cursor: none;
 }
+
+@media (max-width: 810px) {
+  .mapview {
+    width: 100%;
+  }
+}
+
+@media (max-width: 750px) {
+  .calculate {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .new-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}

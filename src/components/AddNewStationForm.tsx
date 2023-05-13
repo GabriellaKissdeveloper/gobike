@@ -93,7 +93,7 @@ export default function AddNewStationForm() {
         <p className="text-center text-bold fs-3 mb-5">Add New Station Form</p>
         <Form onSubmit={handleSubmit}>
           <Row>
-            <Col>
+            <Col sm={12} md={6} lg={3}>
               <Form.Group className="mb-3" controlId="fid">
                 <Form.Label>Station FID Number</Form.Label>
                 <Form.Control
@@ -106,7 +106,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6} lg={3}>
               <Form.Group className="mb-3" controlId="id">
                 <Form.Label>Station ID Number</Form.Label>
                 <Form.Control
@@ -119,7 +119,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col lg={6}>
+            <Col lg={6} sm={12}>
               <Form.Group className="mb-3" controlId="nimi">
                 <Form.Label>Station Name (Finnish)</Form.Label>
                 <Form.Control
@@ -134,7 +134,7 @@ export default function AddNewStationForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="namn">
                 <Form.Label>Station Name (Swedish)</Form.Label>
                 <Form.Control
@@ -147,7 +147,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Station Name (English)</Form.Label>
                 <Form.Control
@@ -162,7 +162,7 @@ export default function AddNewStationForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="osoite">
                 <Form.Label>Station Address (Finnish)</Form.Label>
                 <Form.Control
@@ -175,7 +175,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="adress">
                 <Form.Label>Station Address (Swedish)</Form.Label>
                 <Form.Control
@@ -190,7 +190,7 @@ export default function AddNewStationForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="kaupunki">
                 <Form.Label>City Name (Finnish)</Form.Label>
                 <Form.Control
@@ -203,7 +203,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="stad">
                 <Form.Label>City Name (Swedish)</Form.Label>
                 <Form.Control
@@ -218,7 +218,7 @@ export default function AddNewStationForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="operator">
                 <Form.Label>Station Operator</Form.Label>
                 <Form.Control
@@ -231,7 +231,7 @@ export default function AddNewStationForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={6}>
               <Form.Group className="mb-3" controlId="capacity">
                 <Form.Label>Capacity</Form.Label>
                 <Form.Control
@@ -246,26 +246,28 @@ export default function AddNewStationForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="x">
-                <Form.Label>Geocoordinate lattitude</Form.Label>
+                <Form.Label>Geocoordinate longitude</Form.Label>
                 <Form.Control
                   type="number"
                   name="x"
                   value={inputs.x}
                   onChange={handleChange}
+                  step="0.000001"
                   required
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="y">
-                <Form.Label>Geocoordinate longitude</Form.Label>
+                <Form.Label>Geocoordinate latitude</Form.Label>
                 <Form.Control
                   type="number"
                   name="y"
                   value={inputs.y}
                   onChange={handleChange}
+                  step="0.000001"
                   required
                 />
               </Form.Group>

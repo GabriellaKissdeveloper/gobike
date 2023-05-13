@@ -104,7 +104,7 @@ export default function SingleStation() {
           <div className="mb-4 d-flex justify-content-center">
             <Form onSubmit={handleSubmit}>
               <Row>
-                <Col>
+                <Col xs={12} md={4} sm={6}>
                   <Form.Control
                     type="date"
                     name="startDate"
@@ -115,7 +115,7 @@ export default function SingleStation() {
                     value={startDate}
                   />
                 </Col>
-                <Col>
+                <Col xs={12} md={4} sm={6}>
                   <Form.Control
                     type="date"
                     name="startDate"
@@ -126,8 +126,8 @@ export default function SingleStation() {
                     value={endDate}
                   />
                 </Col>
-                <Col>
-                  <Button type="submit" variant="warning">
+                <Col xs={12} md={4} sm={12}>
+                  <Button type="submit" variant="warning" className="calculate">
                     Calculate
                   </Button>
                 </Col>
@@ -136,7 +136,7 @@ export default function SingleStation() {
           </div>
 
           <Row>
-            <Col className="border border-warning mt-4">
+            <Col className="border border-warning mt-4" md={12} lg={6}>
               <Table>
                 <thead>
                   <tr style={{ backgroundColor: 'white' }}>
@@ -196,7 +196,7 @@ export default function SingleStation() {
                 </tbody>
               </Table>
             </Col>
-            <Col className="mt-4">
+            <Col className="mt-4 mapview" md={12} lg={6}>
               <MapView x={singleStation[0].x} y={singleStation[0].y} />
             </Col>
           </Row>

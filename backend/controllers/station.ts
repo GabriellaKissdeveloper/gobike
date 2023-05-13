@@ -2,6 +2,10 @@ import express from 'express';
 import Station from '../database/stationModel';
 import Journey from '../database/journeyModel';
 
+const replaceString = (str: string) => {
+  return str.replace(/(<([^>]+)>)/gi, '');
+};
+
 export const getAllStations = async (
   req: express.Request,
   res: express.Response,
@@ -97,11 +101,20 @@ export const createNewStation = async (
   res: express.Response,
 ) => {
   const id = req.body.ID;
+  const latitude: number = req.body.y;
+  const longitude: number = req.body.x;
+  console.log(req.body);
   const station = await Station.findOne({ ID: id });
   if (station) {
     return res.json({
       message: 'This ID already exist. ID must be unique.',
       id,
+      status: 409,
+    });
+  } else if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180) {
+    return res.json({
+      message:
+        'Latitude must be between -90 and +90, longitude must be between -180 and +180.',
       status: 409,
     });
   } else {

@@ -21,12 +21,22 @@ export default function AddNew() {
 
   return (
     <Container>
-      <div className="d-flex justify-content-center mt-5">
-        <Button variant="warning" size="lg" onClick={newStationForm}>
+      <div className="d-flex justify-content-center mt-5 new-buttons">
+        <Button
+          className="new"
+          variant="warning"
+          size="lg"
+          onClick={newStationForm}
+        >
           Add New Station
         </Button>
         <Button className="hidden"></Button>
-        <Button variant="warning" size="lg" onClick={newJourneyForm}>
+        <Button
+          className="new"
+          variant="warning"
+          size="lg"
+          onClick={newJourneyForm}
+        >
           Add New Journey
         </Button>
       </div>

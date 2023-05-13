@@ -129,7 +129,7 @@ export default function Stations(props: any) {
         </Form>
         <br />
 
-        <Table bordered>
+        <Table bordered responsive>
           <thead>
             <tr>
               <th>

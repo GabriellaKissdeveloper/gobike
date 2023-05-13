@@ -108,7 +108,7 @@ export default function AddNewJourneyForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="DepartureStationId">
                 <Form.Label>Departure Station ID</Form.Label>
                 <Form.Control
@@ -121,7 +121,7 @@ export default function AddNewJourneyForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="DepartureStationName">
                 <Form.Label>Departure Station Name</Form.Label>
                 <Form.Control
@@ -135,7 +135,7 @@ export default function AddNewJourneyForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="ReturnStationId">
                 <Form.Label>Return Station ID</Form.Label>
                 <Form.Control
@@ -148,7 +148,7 @@ export default function AddNewJourneyForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="ReturnStationName">
                 <Form.Label>Return Station Name</Form.Label>
                 <Form.Control
@@ -162,7 +162,7 @@ export default function AddNewJourneyForm() {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="CoveredDistance">
                 <Form.Label>Covered distance in meters</Form.Label>
                 <Form.Control
@@ -175,7 +175,7 @@ export default function AddNewJourneyForm() {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col sm={12} md={6}>
               <Form.Group className="mb-3" controlId="Duration">
                 <Form.Label>Duration in seconds</Form.Label>
                 <Form.Control
