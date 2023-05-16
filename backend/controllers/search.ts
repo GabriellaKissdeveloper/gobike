@@ -17,8 +17,15 @@ export const searchStations = async (
   const searchStations = await Station.find(searchString)
     .sort(sortObj)
     .select('ID Nimi Osoite Kaupunki Kapasiteet x y');
-
-  res.json({ searchStations });
+  if (searchStations.length !== 0) {
+    res.json({ searchStations, status: 200 });
+  } else {
+    res.json({
+      message: "No station's found with this search criteria.",
+      status: 404,
+      searchStations,
+    });
+  }
 };
 
 export const searchJourneys = async (
@@ -37,5 +44,13 @@ export const searchJourneys = async (
     .limit(parseInt(limit as string))
     .select('DepartureStationName ReturnStationName CoveredDistance Duration');
 
-  res.json({ searchJourneys, total });
+  if (searchJourneys.length !== 0) {
+    res.json({ searchJourneys, status: 200, total });
+  } else {
+    res.json({
+      message: 'No journeys found with this search criteria.',
+      status: 404,
+      searchJourneys,
+    });
+  }
 };

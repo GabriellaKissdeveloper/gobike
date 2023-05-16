@@ -52,7 +52,7 @@ export default function AddNewStationForm() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = (await fetch('http://localhost:8000/stations/new', {
       method: 'POST',

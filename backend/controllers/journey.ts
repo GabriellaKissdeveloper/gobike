@@ -13,7 +13,7 @@ export const getAllJourneys = async (
     .limit(parseInt(limit as string))
     .select('DepartureStationName ReturnStationName CoveredDistance Duration');
 
-  res.json({ journeys, total });
+  res.json({ journeys, total, status: 200 });
 };
 
 export const createNewJourney = async (
@@ -22,7 +22,12 @@ export const createNewJourney = async (
 ) => {
   const depStation = await Station.findOne({ ID: req.body.DepartureStationId });
   const retStation = await Station.findOne({ ID: req.body.ReturnStationId });
-  if (req.body.Duration < 10) {
+  if (req.body.Departure > req.body.Return) {
+    return res.json({
+      status: 400,
+      message: 'Start date/time cannot be greater than end date/time!',
+    });
+  } else if (req.body.Duration < 10) {
     return res.json({
       message: 'Duration must be greater than 10 seconds.',
       status: 409,

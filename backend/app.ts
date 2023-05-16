@@ -27,3 +27,5 @@ app.use('/stations/:id', stationRouter);
 app.use('/stations/search', stationRouter);
 app.use('/journeys', journeyRouter);
 app.use('/journeys/search', journeyRouter);
+
+export default app;

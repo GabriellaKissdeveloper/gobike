@@ -2,15 +2,11 @@ import express from 'express';
 import Station from '../database/stationModel';
 import Journey from '../database/journeyModel';
 
-const replaceString = (str: string) => {
-  return str.replace(/(<([^>]+)>)/gi, '');
-};
-
 export const getAllStations = async (
   req: express.Request,
   res: express.Response,
 ) => {
-  const { pageNo = 0, limit = 20, field, order } = req.query;
+  const { pageNo = 0, limit = 20, field = 'ID', order = 'asc' } = req.query;
   let sortObj: { [key: string]: any } = {};
   let key = field as string;
   sortObj[key] = order === 'asc' ? 1 : -1;
@@ -20,7 +16,7 @@ export const getAllStations = async (
     .skip(parseInt(pageNo as string) * parseInt(limit as string))
     .limit(parseInt(limit as string))
     .select('ID Nimi Osoite Kaupunki Kapasiteet x y');
-  res.json({ stations, total });
+  res.json({ stations, total, status: 200 });
 };
 
 export const getSingleStation = async (
@@ -32,9 +28,8 @@ export const getSingleStation = async (
   let end = new Date(String(req.query.endDate));
 
   if (start > end) {
-    const station = await Station.find({ ID: id }).select('ID Nimi Osoite x y');
     return res.json({
-      station,
+      status: 400,
       message: 'Start date cannot be greater than end date!',
     });
   } else {
@@ -53,46 +48,54 @@ export const getSingleStation = async (
       ],
     };
     const station = await Station.find({ ID: id }).select('ID Nimi Osoite x y');
-    const totalDeparture = await Journey.find({
-      DepartureStationId: id,
-      Departure: { $gte: start },
-      Return: { $lte: end },
-    }).count();
-    const totalReturn = await Journey.find({
-      ReturnStationId: id,
-      Departure: { $gte: start },
-      Return: { $lte: end },
-    }).count();
-    const averageDepartureDistance = await Journey.aggregate([
-      {
-        $match: matching_dep,
-      },
-      {
-        $group: {
-          _id: '$DepartureStationId',
-          average: { $avg: '$CoveredDistance' },
-          avgtime: { $avg: '$Duration' },
+    if (station.length === 0) {
+      return res.json({
+        status: 404,
+        message: 'There is no station with this ID!',
+      });
+    } else {
+      const totalDeparture = await Journey.find({
+        DepartureStationId: id,
+        Departure: { $gte: start },
+        Return: { $lte: end },
+      }).count();
+      const totalReturn = await Journey.find({
+        ReturnStationId: id,
+        Departure: { $gte: start },
+        Return: { $lte: end },
+      }).count();
+      const averageDepartureDistance = await Journey.aggregate([
+        {
+          $match: matching_dep,
         },
-      },
-    ]);
-    const averageReturnDistance = await Journey.aggregate([
-      { $match: matching_ret },
-      {
-        $group: {
-          _id: '$ReturnStationId',
-          average: { $avg: '$CoveredDistance' },
-          avgtime: { $avg: '$Duration' },
+        {
+          $group: {
+            _id: '$DepartureStationId',
+            average: { $avg: '$CoveredDistance' },
+            avgtime: { $avg: '$Duration' },
+          },
         },
-      },
-    ]);
+      ]);
+      const averageReturnDistance = await Journey.aggregate([
+        { $match: matching_ret },
+        {
+          $group: {
+            _id: '$ReturnStationId',
+            average: { $avg: '$CoveredDistance' },
+            avgtime: { $avg: '$Duration' },
+          },
+        },
+      ]);
 
-    res.json({
-      station,
-      totalDeparture,
-      totalReturn,
-      averageDepartureDistance,
-      averageReturnDistance,
-    });
+      res.json({
+        station,
+        totalDeparture,
+        totalReturn,
+        averageDepartureDistance,
+        averageReturnDistance,
+        status: 200,
+      });
+    }
   }
 };
 
@@ -103,7 +106,6 @@ export const createNewStation = async (
   const id = req.body.ID;
   const latitude: number = req.body.y;
   const longitude: number = req.body.x;
-  console.log(req.body);
   const station = await Station.findOne({ ID: id });
   if (station) {
     return res.json({

@@ -42,8 +42,9 @@ export default function AddNewJourneyForm() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(inputs);
     const result = (await fetch('http://localhost:8000/journeys/new', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
