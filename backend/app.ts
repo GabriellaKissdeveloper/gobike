@@ -12,8 +12,10 @@ const uri: string = String(process.env.MONGO_URI);
 mongoose
   .connect(uri)
   .then(() => {
-    app.listen(8000, () =>
-      console.log('Database connected, server is listening on port 8000!'),
+    app.listen(process.env.PORT, () =>
+      console.log(
+        `Database connected, server is listening on port ${process.env.PORT}!`,
+      ),
     );
   })
   .catch((error) => console.log('Database connection failed: ', error));
