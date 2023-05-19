@@ -20,6 +20,12 @@ export const createNewJourney = async (
   req: express.Request,
   res: express.Response,
 ) => {
+  if (
+    typeof req.body.DepartureStationId === 'string' ||
+    typeof req.body.ReturnStationId === 'string'
+  ) {
+    return res.json({ status: 500, message: 'ID must be a number' });
+  }
   const depStation = await Station.findOne({ ID: req.body.DepartureStationId });
   const retStation = await Station.findOne({ ID: req.body.ReturnStationId });
   if (req.body.Departure > req.body.Return) {

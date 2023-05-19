@@ -10,7 +10,7 @@ import { Journey } from '../types/types';
 
 export default function Journeys(props: any) {
   const [journeys, setJourneys] = useState<Journey[]>([]);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [_, setItemOffset] = useState(0);
   const [search, setSearch] = useState('');
   const [total, setTotal] = useState(0);
   const [pageNo, setPageNo] = useState(0);

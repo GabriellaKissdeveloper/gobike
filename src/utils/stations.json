@@ -1,0 +1,37 @@
+[
+  {
+    "ID": 1,
+    "Nimi": "Kaivopuisto",
+    "Kaupunki": "Helsinki",
+    "Osoite": "Meritori 1",
+    "Kapasiteet": 30
+  },
+  {
+    "ID": 2,
+    "Nimi": "Laivasillankatu",
+    "Kaupunki": "Helsinki",
+    "Osoite": "Laivasillankatu 14",
+    "Kapasiteet": 12
+  },
+  {
+    "ID": 3,
+    "Nimi": "Kapteeninpuistikko",
+    "Kaupunki": "Helsinki",
+    "Osoite": "Tehtaankatu 13",
+    "Kapasiteet": 16
+  },
+  {
+    "ID": 4,
+    "Nimi": "Viiskulma",
+    "Kaupunki": "Helsinki",
+    "Osoite": "Fredrikinkatu 19",
+    "Kapasiteet": 14
+  },
+  {
+    "ID": 5,
+    "Nimi": "Sepänkatu",
+    "Kaupunki": "Helsinki",
+    "Osoite": "Tehtaankatu 25",
+    "Kapasiteet": 32
+  }
+]

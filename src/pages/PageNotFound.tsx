@@ -8,7 +8,7 @@ export default function PageNotFound() {
         <p className="fs-3 mt-5">
           <b>Ooops, something went wrong!</b>
         </p>
-        <img src="/images/404pagenotfound.jpg"></img>
+        <img src="/images/404pagenotfound.jpg" alt="broken bike"></img>
         <p className="fs-4 mt-4">
           We can't seem to find the page you're looking for.
         </p>

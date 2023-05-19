@@ -104,6 +104,26 @@ export const createNewStation = async (
   res: express.Response,
 ) => {
   const id = req.body.ID;
+  if (
+    typeof id === 'string' ||
+    typeof req.body.Kapasiteet === 'string' ||
+    typeof req.body.x === 'string' ||
+    typeof req.body.y === 'string'
+  ) {
+    return res.json({ status: 500, message: 'It must be a number' });
+  }
+  if (
+    typeof req.body.Nimi !== 'string' ||
+    typeof req.body.Namn !== 'string' ||
+    typeof req.body.Name !== 'string' ||
+    typeof req.body.Osoite !== 'string' ||
+    typeof req.body.Adress !== 'string' ||
+    typeof req.body.Kaupunki !== 'string' ||
+    typeof req.body.Stad !== 'string' ||
+    typeof req.body.Operaattor !== 'string'
+  ) {
+    return res.json({ status: 500, message: 'This field must contain text' });
+  }
   const latitude: number = req.body.y;
   const longitude: number = req.body.x;
   const station = await Station.findOne({ ID: id });

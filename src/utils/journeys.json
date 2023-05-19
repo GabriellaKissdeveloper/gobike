@@ -1,0 +1,32 @@
+[
+  {
+    "DepartureStationName": "Laajalahden aukio",
+    "ReturnStationName": "Teljäntie",
+    "CoveredDistance": 2040,
+    "Duration": 500
+  },
+  {
+    "DepartureStationName": "Töölöntulli",
+    "ReturnStationName": "Pasilan asema",
+    "CoveredDistance": 1870,
+    "Duration": 611
+  },
+  {
+    "DepartureStationName": "Näkinsilta",
+    "ReturnStationName": "Vilhonvuorenkatu",
+    "CoveredDistance": 1020,
+    "Duration": 399
+  },
+  {
+    "DepartureStationName": "Viiskulma",
+    "ReturnStationName": "Hernesaarenranta",
+    "CoveredDistance": 4320,
+    "Duration": 2009
+  },
+  {
+    "DepartureStationName": "Koskelan varikko",
+    "ReturnStationName": "Paavalinpuisto",
+    "CoveredDistance": 1710,
+    "Duration": 366
+  }
+]

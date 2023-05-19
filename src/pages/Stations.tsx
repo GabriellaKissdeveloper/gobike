@@ -1,6 +1,5 @@
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
@@ -109,6 +108,7 @@ export default function Stations(props: any) {
             <Form.Control
               className="shadow-none form-control"
               type="text"
+              name="search"
               placeholder="Search station/city/address..."
               value={search}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -224,9 +224,9 @@ export default function Stations(props: any) {
               ? searchStations.map((station, i) => {
                   return (
                     <tr key={i}>
-                      <Link to={`/stations/station/${station.ID}`}>
+                      <a href={`/stations/station/${station.ID}`}>
                         <td>{station.ID}</td>
-                      </Link>
+                      </a>
 
                       <td>{station.Nimi}</td>
                       <td>
@@ -242,13 +242,13 @@ export default function Stations(props: any) {
               : stations.map((station, i) => {
                   return (
                     <tr key={i}>
-                      <Link to={`/stations/station/${station.ID}`}>
+                      <a href={`/stations/station/${station.ID}`}>
                         <td>
                           <span className="pt-2 align-middle">
                             {station.ID}
                           </span>
                         </td>
-                      </Link>
+                      </a>
                       <td>{station.Nimi}</td>
                       <td>
                         {station.Kaupunki !== ' '

@@ -137,6 +137,26 @@ describe('Create a new station', () => {
     );
   });
 
+  test('Create a new station with string ID returns 500 error code', async () => {
+    const result = await request(app)
+      .post('/stations/new')
+      .send(JSON.stringify({ ID: 'Helsinki' }))
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
+    expect(result._body.status).toEqual(500);
+    expect(result._body.message).toEqual('It must be a number');
+  });
+
+  test('Create a new station with incorrect input type returns 500 error code', async () => {
+    const result = await request(app)
+      .post('/stations/new')
+      .send(JSON.stringify({ ID: 803, Nimi: 123 }))
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
+    expect(result._body.status).toEqual(500);
+    expect(result._body.message).toEqual('This field must contain text');
+  });
+
   test('After creating a new station, total number increased with 1', async () => {
     newAllStations = await request(app).get('/stations');
     expect(newAllStations.body.total).toEqual(resAllStations.body.total + 1);
@@ -145,7 +165,7 @@ describe('Create a new station', () => {
   test('Try to create a new station with existing ID number', async () => {
     const result = await request(app)
       .post('/stations/new')
-      .send(JSON.stringify({ ID: 801 }))
+      .send(JSON.stringify(query))
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
     expect(result._body.status).toEqual(409);
@@ -157,7 +177,23 @@ describe('Create a new station', () => {
   test('Try to create a new station with invalid geocoordinates', async () => {
     const result = await request(app)
       .post('/stations/new')
-      .send(JSON.stringify({ ID: 802, x: 185.15246, y: -95.25346 }))
+      .send(
+        JSON.stringify({
+          FID: 459,
+          ID: 803,
+          Nimi: 'Juhani Ahon',
+          Namn: 'Juhani Aho',
+          Name: 'Juhani Ahon',
+          Osoite: 'Juhani Ahon tie 5',
+          Adress: 'Juhani Aho väg 5',
+          Kaupunki: 'Helsinki',
+          Stad: 'Helsingfors',
+          Operaattor: 'CityBike Helsinki',
+          Kapasiteet: 20,
+          x: 185.15246,
+          y: -95.25346,
+        }),
+      )
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
     expect(result._body.status).toEqual(409);

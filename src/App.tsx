@@ -15,7 +15,7 @@ import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
-    <div>
+    <>
       <Router>
         <NavBar />
         <Switch>
@@ -40,7 +40,7 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-    </div>
+    </>
   );
 }
 

@@ -88,6 +88,16 @@ describe('Create a new journey', () => {
     expect(newAllJourneys.body.total).toEqual(resAllJourneys.body.total + 1);
   });
 
+  test('Create a new journey with string station ID returns 500 error code', async () => {
+    const result = await request(app)
+      .post('/journeys/new')
+      .send(JSON.stringify({ DepartureStationId: 'Helsinki' }))
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
+    expect(result._body.status).toEqual(500);
+    expect(result._body.message).toEqual('ID must be a number');
+  });
+
   test('Try to create a new journey with duration < 10 sec', async () => {
     const result = await request(app)
       .post('/journeys/new')

@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.3.3",
     "bootstrap": "^5.2.3",
     "mapbox-gl": "^2.14.1",
+    "msw": "^1.2.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
@@ -28,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -55,5 +56,8 @@
     "singleQuote": true,
     "printWidth": 80,
     "tabWidth": 2
+  },
+  "devDependencies": {
+    "ts-jest": "^29.1.0"
   }
 }
