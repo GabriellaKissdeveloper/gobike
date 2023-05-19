@@ -39,6 +39,6 @@ Running tests:
 - backend test: enter backend folder, 'npm test' will runt all tests from test folder
 - frontend test: in terminal run 'npm test' command, that will run all tests from src/**tests** folder (tests are the same name as the components that they are testing)
 
-![backend test result](test_stations.png)
+![backend test result](test-stations.png)
 
-![backend test result](test_journeys.png)
+![backend test result](test-journeys.png)
